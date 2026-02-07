@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotorinApi", "MotorinApi.csproj", "{0EA298A1-86D3-C25C-83C4-174A78503BB6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0EA298A1-86D3-C25C-83C4-174A78503BB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EA298A1-86D3-C25C-83C4-174A78503BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EA298A1-86D3-C25C-83C4-174A78503BB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EA298A1-86D3-C25C-83C4-174A78503BB6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E775C604-9662-4AB3-AF1C-2A70854A1DC9}
+	EndGlobalSection
+EndGlobal
