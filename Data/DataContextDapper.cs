@@ -19,16 +19,16 @@ namespace MotorinApi
             return dbConnection.Query<T>(sql);
         }
 
-        public T LoadDataSingle<T>(string sql)
+        public T LoadDataSingle<T>(string sql, object? parameters = null)
         {
             IDbConnection dbConnection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
-            return dbConnection.QuerySingle<T>(sql);
+            return dbConnection.QuerySingleOrDefault<T>(sql, parameters);
         }
 
-        public bool ExecuteSql(string sql)
+        public bool ExecuteSql(string sql, object? parameters = null)
         {
             IDbConnection dbConnection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
-            return dbConnection.Execute(sql) > 0;
+            return dbConnection.Execute(sql, parameters) > 0;
         }
 
         public int ExecuteSqlWithRowCount(string sql)
