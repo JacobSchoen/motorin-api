@@ -1,4 +1,4 @@
-namespace MotorinApi
+namespace MotorinApi.Models
 {
     public partial class HotWheelsMasterCatalog
     {

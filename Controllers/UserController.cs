@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using MotorinApi.Dtos;
+using MotorinApi.Models;
 namespace MotorinApi.Controllers;
 
 [ApiController]
@@ -44,8 +45,6 @@ public class UserController : ControllerBase
         }
 
         return user;
-
-
     }
 
     [HttpGet("GetUsers")]
@@ -127,6 +126,23 @@ public class UserController : ControllerBase
             return Ok();
         }
         throw new Exception("Failed to Add User");
+    }
+
+    [HttpDelete("DeleteUser/{userId}")]
+    public ActionResult<User> DeleteUser(Guid userId)
+    {
+        string sql = @"
+        DELETE FROM CoreSchema.Users
+         WHERE UserId = @UserId";
+
+        var parameters = new { UserId = userId };
+
+        if (_dapper.ExecuteSql(sql, parameters))
+        {
+            return Ok();
+        }
+
+        throw new Exception("Failed to Delete User");
     }
 
 
