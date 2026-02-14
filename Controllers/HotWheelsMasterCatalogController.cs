@@ -48,4 +48,30 @@ public class HotWheelsMasterCatalogController : ControllerBase
 
         return hotWheelsMasterCatalog;
     }
+
+    [HttpGet("GetHotwheelMasterCatalogItems")]
+    public IEnumerable<HotWheelsMasterCatalog> GetHotwheelMaterCatalogItems()
+    {
+        string sql = @"
+        SELECT [CatalogId],
+            [ProductLine],
+            [ModelName],
+            [ToyNumber],
+            [SeriesName],
+            [SeriesNumber],
+            [CastingName],
+            [ColorVariant],
+            [TampoDesign],
+            [TreasureHunt],
+            [SuperTreasureHunt],
+            [ManufactureYear],
+            [ProductNumber],
+            [OfficialImageUrl],
+            [Description],
+            [CreatedAt],
+            [UpdatedAt] FROM CoreSchema.HotWheelsMasterCatalog";
+
+        IEnumerable<HotWheelsMasterCatalog> catalogItems = _dapper.LoadData<HotWheelsMasterCatalog>(sql);
+        return catalogItems;
+    }
 }

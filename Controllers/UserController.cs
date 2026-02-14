@@ -12,7 +12,6 @@ public class UserController : ControllerBase
 
     public UserController(IConfiguration config)
     {
-        Console.WriteLine(config.GetConnectionString("DefaultConnection"));
         _dapper = new DataContextDapper(config);
 
     }

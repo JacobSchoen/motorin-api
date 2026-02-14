@@ -48,5 +48,4 @@ public class CollectionItemController : Controller
         return collectionItem;
     }
 
-
 }
