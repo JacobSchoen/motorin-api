@@ -83,6 +83,15 @@ CREATE TABLE CoreSchema.HotWheelsMasterCatalog
 );
 GO
 
+SELECT
+    c.name AS ColumnName,
+    dc.name AS DefaultConstraintName,
+    dc.definition AS DefaultValue
+FROM sys.default_constraints dc
+    INNER JOIN sys.columns c ON dc.parent_object_id = c.object_id AND dc.parent_column_id = c.column_id
+WHERE dc.parent_object_id = OBJECT_ID('CoreSchema.HotWheelsMasterCatalog')
+    AND c.name IN ('CatalogId', 'CreatedAt', 'UpdatedAt');
+    GO
 -- ============================================
 -- USER'S COLLECTION ITEMS (Many-to-Many join)
 -- ============================================

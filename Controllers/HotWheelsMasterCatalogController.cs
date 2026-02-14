@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MotorinApi.Models;
-
+using MotorinApi.Dtos;
 namespace MotorinApi.Controllers;
 
 [ApiController]
@@ -74,4 +74,66 @@ public class HotWheelsMasterCatalogController : ControllerBase
         IEnumerable<HotWheelsMasterCatalog> catalogItems = _dapper.LoadData<HotWheelsMasterCatalog>(sql);
         return catalogItems;
     }
+
+    [HttpPost("AddHotWheelMasterCatalog")]
+    public IActionResult AddHotWheelMaterCatalog(CreateHotWheelsCatalogDto catalog)
+    {
+        string sql = @"
+        INSERT INTO CoreSchema.HotWheelsMasterCatalog
+            ([ProductLine],
+            [ModelName],
+            [ToyNumber],
+            [SeriesName],
+            [SeriesNumber],
+            [CastingName],
+            [ColorVariant],
+            [TampoDesign],
+            [TreasureHunt],
+            [SuperTreasureHunt],
+            [ManufactureYear],
+            [ProductNumber],
+            [OfficialImageUrl],
+            [Description])
+        VALUES(
+            @ProductLine,
+            @ModelName,
+            @ToyNumber,
+            @SeriesName,
+            @SeriesNumber,
+            @CastingName,
+            @ColorVariant,
+            @TampoDesign,
+            @TreasureHunt,
+            @SuperTreasureHunt,
+            @ManufactureYear,
+            @ProductNumber,
+            @OfficialImageUrl,
+            @Description    
+        )";
+
+        var parameters = new
+        {
+            catalog.ProductLine,
+            catalog.ModelName,
+            catalog.ToyNumber,
+            catalog.SeriesName,
+            catalog.SeriesNumber,
+            catalog.CastingName,
+            catalog.ColorVariant,
+            catalog.TampoDesign,
+            catalog.TreasureHunt,
+            catalog.SuperTreasureHunt,
+            catalog.ManufactureYear,
+            catalog.ProductNumber,
+            catalog.OfficialImageUrl,
+            catalog.Description
+        };
+
+        if (_dapper.ExecuteSql(sql, parameters))
+        {
+            return Ok();
+        }
+        throw new Exception("Failed to Add Catalog Item");
+    }
 }
+
