@@ -183,5 +183,22 @@ public class HotWheelsMasterCatalogController : ControllerBase
         }
         throw new Exception("Failed to update catalog item");
     }
+
+    [HttpDelete("DeleteHotWheelMasterCatalog/{catalogId}")]
+    public ActionResult<HotWheelsMasterCatalog> DeleteHotWheelMasterCatalog(Guid catalogId)
+    {
+        string sql = @"
+        DELETE FROM CoreSchema.HotWheelsMasterCatalog
+         WHERE CatalogId = @CatalogId";
+
+        var parameters = new { CatalogId = catalogId };
+
+        if (_dapper.ExecuteSql(sql, parameters))
+        {
+            return Ok();
+        }
+
+        throw new Exception("Failed to Delete Catalog Item");
+    }
 }
 
