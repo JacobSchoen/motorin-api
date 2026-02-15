@@ -76,7 +76,7 @@ public class HotWheelsMasterCatalogController : ControllerBase
     }
 
     [HttpPost("AddHotWheelMasterCatalog")]
-    public IActionResult AddHotWheelMaterCatalog(CreateHotWheelsCatalogDto catalog)
+    public IActionResult AddHotWheelMasterCatalog(CreateHotWheelsCatalogDto catalog)
     {
         string sql = @"
         INSERT INTO CoreSchema.HotWheelsMasterCatalog
@@ -134,6 +134,54 @@ public class HotWheelsMasterCatalogController : ControllerBase
             return Ok();
         }
         throw new Exception("Failed to Add Catalog Item");
+    }
+
+    [HttpPut("UpdateHotWheelMasterCatalog")]
+    public IActionResult UpdateHotWheelMasterCatalog(UpdateHotWheelsCatalogDto catalog)
+    {
+        string sql = @"
+        UPDATE CoreSchema.HotWheelsMasterCatalog 
+        SET [ProductLine] = @ProductLine,
+            [ModelName] = @ModelName,
+            [ToyNumber] = @ToyNumber,
+            [SeriesName] = @SeriesName,
+            [SeriesNumber] = @SeriesNumber,
+            [CastingName] = @CastingName,
+            [ColorVariant] = @ColorVariant,
+            [TampoDesign] = @TampoDesign,
+            [TreasureHunt] = @TreasureHunt,
+            [SuperTreasureHunt] = @SuperTreasureHunt,
+            [ManufactureYear] = @ManufactureYear,
+            [ProductNumber] = @ProductNumber,
+            [OfficialImageUrl] = @OfficialImageUrl,
+            [Description] = @Description,
+            [UpdatedAt] = GETUTCDATE()
+        WHERE CatalogId = @CatalogId";
+
+        var parameters = new
+        {
+            catalog.ProductLine,
+            catalog.ModelName,
+            catalog.ToyNumber,
+            catalog.SeriesName,
+            catalog.SeriesNumber,
+            catalog.CastingName,
+            catalog.ColorVariant,
+            catalog.TampoDesign,
+            catalog.TreasureHunt,
+            catalog.SuperTreasureHunt,
+            catalog.ManufactureYear,
+            catalog.ProductNumber,
+            catalog.OfficialImageUrl,
+            catalog.Description,
+            catalog.CatalogId
+        };
+
+        if (_dapper.ExecuteSql(sql, parameters))
+        {
+            return Ok();
+        }
+        throw new Exception("Failed to update catalog item");
     }
 }
 
