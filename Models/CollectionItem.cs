@@ -3,7 +3,6 @@ namespace MotorinApi.Models
     public partial class CollectionItem
     {
         public System.Guid CollectionId { get; set; }
-        public System.Guid UserId { get; set; }
         public System.Guid CatalogId { get; set; }
         public string Condition { get; set; }
         public bool IsInPackage { get; set; }

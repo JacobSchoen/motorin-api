@@ -1,6 +1,6 @@
 namespace MotorinApi.Models
 {
-    public partial class Collection
+    public partial class Collections
     {
         public System.Guid CollectionId { get; set; }
         public System.Guid UserId { get; set; }
@@ -12,7 +12,7 @@ namespace MotorinApi.Models
         public bool IsDeleted { get; set; }
         public DateTime DeletedAt { get; set; }
 
-        public Collection()
+        public Collections()
         {
             if (CollectionType == null)
             {
